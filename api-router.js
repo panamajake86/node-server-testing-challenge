@@ -6,7 +6,9 @@ router.get('/characters', async (req, res) => {
     try {
         const guys = await Resource.find();
         res.json(guys);
-    } catch (err) {res.status(500).json({ message: "They're not here, try again later.", err })}
+    } catch (err) {
+        res.status(500).json({ message: "They're not here, try again later.", err })
+    }
 });
 
 router.post('/characters', async (req, res) => {
