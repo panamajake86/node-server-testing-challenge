@@ -3,21 +3,28 @@ const db = require('./data/db-config');
 module.exports = {
     add,
     find,
-    findById
+    findById,
+    remove
 };
 
 function find() {
     return db('resource');
 };
 
-async function add(data) {
-    const [id] = await db('resource').insert(data);
+ function add(data) {
+    return db('resource').insert(data);
 
-    return findById(id);
+    // return findById(id);
 };
 
 function findById(stuff) {
     return db('resource')
-        .where(({ id }))
+        .where(({ stuff }))
         .first();
+};
+
+function remove(id) {
+    return db('resource')
+        .where({ id })
+        .del()
 };
